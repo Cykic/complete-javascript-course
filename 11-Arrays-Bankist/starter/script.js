@@ -74,3 +74,52 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+const arr = ['a', 'b', 'c', 'd', 'e'];
+
+console.log(arr);
+console.log(arr.splice(3, 1));
+console.log(arr);
+//CONVERTION TO MAP
+const obj1 = {
+  a: 'bj',
+  b: 'tj',
+};
+
+const obj1Map = new Map(Object.entries(obj1));
+console.log(arr);
+arr.find(function (val, index) {
+  val === 'a' ? console.log(val, index + 1) : '';
+});
+
+const d = arr.findIndex((val, i, arr) => val === 'c');
+console.log(d);
+console.log(obj1Map);
+obj1Map.forEach(function (value, key) {
+  console.log(`${key}: ${value}`);
+});
+
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `
+  <div class="movements__row">
+    <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
+    <div class="movements__value">${mov}€</div>
+  </div>
+  `;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovements(movements);
+
+const accountMovements = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(accountMovements);
+
+const some = accounts.flatMap((acc)=>acc.movements)
+console.log(some);

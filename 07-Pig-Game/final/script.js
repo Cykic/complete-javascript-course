@@ -13,14 +13,14 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 
-let scores, currentScore, activePlayer, playing;
+let scores, currentScore, activePlayer, isPlaying;
 
 // Starting conditions
 const init = function () {
   scores = [0, 0];
   currentScore = 0;
   activePlayer = 0;
-  playing = true;
+  isPlaying = true;//GAME STATE
 
   score0El.textContent = 0;
   score1El.textContent = 0;
@@ -45,7 +45,7 @@ const switchPlayer = function () {
 
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
-  if (playing) {
+  if (isPlaying) {
     // 1. Generating a random dice roll
     const dice = Math.trunc(Math.random() * 6) + 1;
 
